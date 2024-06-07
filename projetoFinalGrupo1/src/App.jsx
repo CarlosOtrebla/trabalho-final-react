@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ToolBar } from './components/ToolBar'
 
 import './App.css'
+import { Cart } from './pages/carrinho/Carrinho'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,6 +14,9 @@ function App() {
      <h1>Hello World</h1>
      
     </div>
+     <div>
+      <Cart/>
+     </div>
     </>
   )
 }

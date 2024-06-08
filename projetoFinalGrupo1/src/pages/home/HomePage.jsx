@@ -5,6 +5,7 @@ import { Botao } from '../../components/Button/Button';
 import './HomePage.css'
 
 
+
 export function HomePage() {
   
 //    const navigate = useNavigate();
@@ -16,6 +17,7 @@ export function HomePage() {
   return (
     <>
       <NavBar/> 
+      
       <br />
       <br />
       {/* <Botao onclick={handleNavigateToLogin} valor={'Login'} /> */}

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
-import Login from '../../pages/login/Login';
+
+
+import { Google } from '../CadastroUsuarioGoogle';
 
 export function NavBar() {
 
@@ -9,7 +11,8 @@ export function NavBar() {
     <nav className="nav">
       <div className="container">
         <div className="logo">
-          <Link to="/">Logo</Link>
+        <Link to="/">Logo</Link>
+
         </div>
         <div className="main_list" id="mainListDiv">
           <ul>
@@ -17,6 +20,7 @@ export function NavBar() {
             <li><Link to="/sobre">Sobre</Link></li>
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/carrinho">Carrinho</Link></li>
+            <li><Google/></li>
           </ul>
         </div>
         <div className="media_button">

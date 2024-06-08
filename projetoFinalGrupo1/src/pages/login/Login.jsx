@@ -3,6 +3,7 @@ import { Container, TextField, Button, Typography } from '@mui/material';
 import './styles.css';
 
 
+
 export default function Login() {
   const [nome, setNome] = useState('');
   const [nascimento, setNascimento] = useState('');
@@ -11,6 +12,7 @@ export default function Login() {
   const [cpf, setCpf] = useState('');
   const [cep, setCep] = useState('');
   const [cadastrado, setCadastrado] = useState(false);
+  
 
   const handleCadastrar = () => {
     console.log("Dados do formulário:");
@@ -115,3 +117,11 @@ export default function Login() {
   );
 }
 
+// nome tel email cpf
+// url cep
+// {
+//   "nome": "Patrick",
+//   "telefone":"(24)98845-0909",
+//   "email": "joao@gmail.com",
+//   "cpf": "08807763745"
+// }

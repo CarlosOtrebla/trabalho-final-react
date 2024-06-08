@@ -23,6 +23,7 @@
 /* Navbar section */
 
 .nav{
+    padding: 10px;
     width: 100%;
     height: 65px;
     position: fixed;

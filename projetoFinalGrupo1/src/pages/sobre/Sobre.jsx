@@ -1,21 +1,41 @@
 import React from 'react';
+import './sobre.css';
+import logoSerraTech from '/src/assets/img/logo.jpeg';
 
+const descricaoGrupo = {
+    nome: 'Serra Tech: Inovação e Tecnologia em Harmonia',
+    paragrafos: [
+        'Somos um grupo diversificado de seis entusiastas da tecnologia, unidos pela paixão por inovação e pelo desejo de transformar o mercado de e-commerce de produtos de informática.',
+        'Nossa equipe é composta por Marcela, a visionária criativa; Carlos, o estrategista analítico; Patrick, o desenvolvedor ágil; Geisila, a especialista em experiência do usuário; Felipe, o arquiteto de soluções; e Gustavo, o otimizador incansável.',
+        'Juntos, na residência em TIC e software do Serratec, estamos desenvolvendo um projeto em React que não é apenas um e-commerce, mas uma experiência de compra revolucionária.',
+        'Cada membro traz uma habilidade única para a mesa, garantindo que cada aspecto do nosso projeto seja meticulosamente planejado e executado com excelência.',
+        'Acreditamos que a tecnologia deve ser acessível, intuitiva e avançada, e é isso que nos esforçamos para refletir em nosso trabalho. “Serra Tech” não é apenas um nome; é uma promessa de qualidade, inovação e confiança.'
+    ]
+};
 const team = [
-    { name: 'Geisila Silva da Costa', bio: 'Sou uma pessoa dedicada, e procuro viver com alegria e sempre ver o lado positivo da vida! ', photo: '/src/img/ge.png' },
+    { name: 'Geisila', bio: 'Tenho 41 anos, mãe de 3 filhos; me considero muito resiliênte, dedicada, pontual, organizada e alegre e procuro sempre ver o lado positivo da vida! ', photo: '/src/assets/img/ge.png' },
     { name: 'Carlos Alberto', bio: '', photo: '/src/assets/img/Carlos.webp' },
     { name: 'Patrick', bio: '', photo: '/src/assets/img/Patrick.webp' },
-    { name: 'Felipe', bio: '', photo: '/src/img/ge.png' },
-    { name: 'Gustavo', bio: '', photo: '/src/img/ge.png' },
-    { name: 'Marcela', bio: '', photo: '/src/img/ge.png' },
+    { name: 'Felipe', bio: '', photo: '/src/assets/img/Felipe.jpg' },
+    { name: 'Gustavo', bio: '', photo: '/src/assets/img/gustavo.jpg' },
+    { name: 'Marcela', bio: 'Tenho 55 anos, mãe de três filhos. Sou corredora amadora, extrovertida, dedicada e agregadora. Amo desafios.', photo: '/src/assets/img/marcela.jpg' },
 ];
 
-function Sobre() {
+export function Sobre() {
     return (
-        <div className={styles.sobre}>
-            <h1>Grupo 1</h1>
-            <div className={styles.team}>
+        <div className="sobre">
+            <div className="logo-descricao">
+                <img src={logoSerraTech} alt="Logotipo Serra Tech" className="logo" />
+                <div className="descricao">
+                    <h1>{descricaoGrupo.nome}</h1>
+                    {descricaoGrupo.paragrafos.map((paragrafo, index) => (
+                        <p key={index}>{paragrafo}</p>
+                    ))}
+                </div>
+            </div>
+            <div className="team">
                 {team.map(member => (
-                    <div key={member.name} className={styles.member}>
+                    <div key={member.name} className="member">
                         <img src={member.photo} alt={member.name} />
                         <h2>{member.name}</h2>
                         <p>{member.bio}</p>
@@ -26,4 +46,4 @@ function Sobre() {
     );
 }
 
-export default Sobre;
+

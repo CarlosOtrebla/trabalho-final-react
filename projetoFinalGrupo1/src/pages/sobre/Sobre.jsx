@@ -13,9 +13,9 @@ const descricaoGrupo = {
     ]
 };
 const team = [
-    { name: 'Geisila', bio: 'Tenho 41 anos, mãe de 3 filhos; me considero muito resiliênte, dedicada, pontual, organizada e alegre e procuro sempre ver o lado positivo da vida! ', photo: '/src/assets/img/ge.png' },
-    { name: 'Carlos Alberto', bio: '', photo: '/src/assets/img/Carlos.webp' },
-    { name: 'Patrick', bio: '', photo: '/src/assets/img/Patrick.webp' },
+    { name: 'Geisila', bio: 'Tenho 41 anos, mãe de 3 filhos; me considero muito resiliente, dedicada, pontual, organizada e alegre e procuro sempre ver o lado positivo da vida! ', photo: '/src/assets/img/ge.png' },
+    { name: 'Carlos', bio: 'Sou um homem casado com uma esposa maravilhosa, Mariana,  pai de dois meninos, João e Sebastião que são a razão da minha constante luta para alcançar meus objetivos. Tenho 47 anos, e sou apaixonado por música Sertaneja, “de 2000 pra trás”, salvo algumas exceções atuais, bem poucas. kkkk. Sou extrovertido, brincalhão e adoro fazer novas amizades.', photo: '/src/assets/img/Carlos.webp' },
+    { name: 'Patrick', bio: 'Profissional da área de hotelaria, com 32 anos e 14 anos de expertise em atendimento ao cliente, sempre animado e pronto a encarar novos desafios!', photo: '/src/assets/img/Patrick.webp' },
     { name: 'Felipe', bio: '', photo: '/src/assets/img/Felipe.jpg' },
     { name: 'Gustavo', bio: '', photo: '/src/assets/img/gustavo.jpg' },
     { name: 'Marcela', bio: 'Tenho 55 anos, mãe de três filhos. Sou corredora amadora, extrovertida, dedicada e agregadora. Amo desafios.', photo: '/src/assets/img/marcela.jpg' },

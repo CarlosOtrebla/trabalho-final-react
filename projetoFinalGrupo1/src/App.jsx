@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import './App.css'
+
 import { Rotas } from './routes/Routes'
 
 function App() {
@@ -8,11 +9,13 @@ function App() {
 
   return (
     <>
-     <div>
-      <Rotas/>
-     </div>
+    
+      <div>
+        <Rotas />
+      </div>
+  
     </>
   )
 }
 
-export default App
+export default App;

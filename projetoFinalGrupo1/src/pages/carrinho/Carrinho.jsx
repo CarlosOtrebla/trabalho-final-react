@@ -1,31 +1,10 @@
-// import {useState, useEffect} from 'react'
-
-// export function Cart(){
-//   const[cart, setCart] = useState([];
-
-//   useEffect(()=>{
-//     fetch('http://localhost:8080/carrinho').
-//       .then(response => response.json())
-//       .then(data => setCart(data))
-//       .catch(error => console.error(error));
-
-//   }, []);  
-//   return(
-//     <>
-//     console.log(Cart)
-//     </>
-//   )
-
-//   )
-// }
-
 import {useState, useEffect} from 'react'
 
 export function Cart(){
-  const[cart, setCart] = useState([];
+  const[cart, setCart] = useState([]);
 
   useEffect(()=>{
-    fetch('http://localhost:8080/carrinho').
+    fetch('http://localhost:8080/carrinho')
       .then(response => response.json())
       .then(data => setCart(data))
       .catch(error => console.error(error));
@@ -35,7 +14,5 @@ export function Cart(){
     <>
     console.log(Cart)
     </>
-  )
-
-  )
+  );
 }

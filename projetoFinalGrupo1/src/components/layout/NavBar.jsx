@@ -7,7 +7,7 @@ import { Google } from '../CadastroUsuarioGoogle';
 
 
 
-export function NavBarHz() {
+export function NavBar() {
   return (
     <nav className="nav">
       <div className="container">

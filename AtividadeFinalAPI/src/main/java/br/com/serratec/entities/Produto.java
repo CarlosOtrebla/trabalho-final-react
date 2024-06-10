@@ -19,7 +19,6 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Produto {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

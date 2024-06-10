@@ -1,11 +1,29 @@
-import React from "react";
-import { Carrossel } from "../../components/Card/Carrossel";
+import React, { useState, useEffect } from "react";
 import { NavBarHz } from "../../components/layout/NavBar";
-import { MenuProduto } from "../../components/layout/MenuProduto";
 import { Button } from "@mui/material";
+import { AnimatePresence, motion } from "framer-motion";
 import "./HomePage.css";
 
 export function HomePage() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const images = [
+    { id: 1, src: "https://file.rendit.io/n/qyOX3M9x98.png" },
+    { id: 2, src: "https://file.rendit.io/n/RsxQYJZ530.png" },
+    { id: 3, src: "https://file.rendit.io/n/slFmDx7oEM.png" },
+    { id: 4, src: "https://file.rendit.io/n/yAM0Y86FiP.png" },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="pagina-inicial">
       <div className="barra-navegacao-horizontal">
@@ -13,11 +31,7 @@ export function HomePage() {
       </div>
 
       <div className="imagem-secao">
-        <img
-          src="https://file.rendit.io/n/qyOX3M9x98.png"
-          alt="Imagem brilhante e convidativa mostrando as melhores ofertas e novos produtos em celulares"
-          className="imagem-destaque"
-        />
+        <Slideshow images={images} currentImageIndex={currentImageIndex} />
       </div>
 
       <div className="componente-pesquisa">
@@ -88,6 +102,20 @@ export function HomePage() {
   );
 }
 
+const Slideshow = ({ images, currentImageIndex }) => (
+  <AnimatePresence>
+    <motion.img
+      key={images[currentImageIndex].id}
+      src={images[currentImageIndex].src}
+      initial={{ x: 300, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: -300, opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="imagem-destaque"
+    />
+  </AnimatePresence>
+);
+
 function MenuIcon(props) {
   return (
     <svg
@@ -108,3 +136,5 @@ function MenuIcon(props) {
     </svg>
   );
 }
+
+export default HomePage;

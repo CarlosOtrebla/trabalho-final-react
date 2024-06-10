@@ -81,7 +81,9 @@ public class CarrinhoService {
 		} else if (valorTotal.compareTo(new BigDecimal("300")) > 0) {
 			desconto = new BigDecimal("0.03");
 		}
+		
 		BigDecimal valorComDesconto = valorTotal.subtract(valorTotal.multiply(desconto));
 		return valorComDesconto.setScale(2, RoundingMode.HALF_UP);
 	}
+	
 }

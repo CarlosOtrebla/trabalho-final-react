@@ -5,8 +5,9 @@ import './NavBar.css';
 
 import { Google } from '../CadastroUsuarioGoogle';
 
-export function NavBar() {
 
+
+export function NavBarHz() {
   return (
     <nav className="nav">
       <div className="container">
@@ -14,6 +15,7 @@ export function NavBar() {
         <Link to="/">Logo</Link>
 
         </div>
+
         <div className="main_list" id="mainListDiv">
           <ul>
             <li><Link to="/">Home</Link></li>
@@ -24,6 +26,7 @@ export function NavBar() {
             <li><Google/></li>
           </ul>
         </div>
+
         <div className="media_button">
           <button className="main_media_button" id="mediaButton">
             <span></span>
@@ -35,3 +38,4 @@ export function NavBar() {
     </nav>
   );
 }
+

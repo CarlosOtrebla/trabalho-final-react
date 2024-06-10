@@ -26,8 +26,8 @@ public class ClienteService {
 	@Autowired
 	private MailConfig configEmail;
 
-	@Autowired
-	private EnderecoService enderecoService;
+//	@Autowired
+//	private EnderecoService enderecoService;
 	
 	
 	//na hora que criar o cliente cadastramos o endereco dele junto
@@ -49,14 +49,14 @@ public class ClienteService {
 
 	}
 
-	public ClienteResponseDTO cadastrarCliente(String cep,ClienteRequestDTO clienteRequestDTO) {
+	public ClienteResponseDTO cadastrarCliente(ClienteRequestDTO clienteRequestDTO) {
 		if (repository.findByEmail(clienteRequestDTO.getEmail()) != null) {
 			throw new EmailException("E-mail já existente no sistema.");
 		}
-			Endereco endereco = enderecoService.buscar(cep);
+			
 
 			Cliente cliente = new Cliente(clienteRequestDTO.getNome(), clienteRequestDTO.getTelefone(),
-					clienteRequestDTO.getEmail(), clienteRequestDTO.getCpf(), endereco);
+					clienteRequestDTO.getEmail(), clienteRequestDTO.getCpf());
 			Cliente clienteSalvo = repository.save(cliente);
 			//Envio de e-mail informando a conclusão do cadastro.
 			configEmail.sendMail(cliente.getEmail(),"Cadastro de Cliente efetuado com Sucesso." ,cliente.toString());
@@ -71,7 +71,7 @@ public class ClienteService {
 		Optional<Cliente> cli = repository.findById(id);
 		if (cli.isPresent()) {
 			cliente.setId(id);
-			cliente.setEndereco(cli.get().getEndereco());
+			
 			//Envio de e-mail informando a atualização de cadastro.
 			configEmail.sendMail(cliente.getEmail(),"Cadastro de Cliente Atualizado com Sucesso." ,cliente.toString());
 			

@@ -52,9 +52,9 @@ public class ClienteController {
             @ApiResponse(responseCode = "400", description = "Dados inválidos", content = @Content),
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor", content = @Content)
     })
-    @PostMapping("/cadastrar/{cep}")
-    public ResponseEntity<ClienteResponseDTO> cadastrarCliente(@Valid @RequestBody ClienteRequestDTO clienteRequestDTO, @PathVariable String cep) {
-        return ResponseEntity.created(null).body(service.cadastrarCliente(cep, clienteRequestDTO));
+    @PostMapping("/cadastrar")
+    public ResponseEntity<ClienteResponseDTO> cadastrarCliente(@Valid @RequestBody ClienteRequestDTO clienteRequestDTO) {
+        return ResponseEntity.created(null).body(service.cadastrarCliente( clienteRequestDTO));
         
     }
     

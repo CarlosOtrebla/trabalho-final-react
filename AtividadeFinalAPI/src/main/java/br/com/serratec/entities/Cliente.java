@@ -22,6 +22,7 @@ public class Cliente {
 	private String telefone;
 	private String email;
 	private String cpf;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
@@ -33,18 +34,18 @@ public class Cliente {
 
 	}
 
-	public Cliente(String nome, String telefone, String email, String cpf, Endereco endereco) {
+	public Cliente(String nome, String telefone, String email, String cpf) {
 		super();
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
 		this.cpf = cpf;
-		this.endereco = endereco;
+		
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
+//	public Endereco getEndereco() {
+//		return endereco;
+//	}
 
 	public Long getId() {
 		return id;
@@ -86,9 +87,9 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+//	public void setEndereco(Endereco endereco) {
+//		this.endereco = endereco;
+//	}
 
 	@Override
 	public String toString() {

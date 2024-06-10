@@ -1,39 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logoImg from '../../assets/img/logo.jpeg';
-import 'primeicons/primeicons.css'; 
-import './NavBar.css'; 
+import './NavBar.css';
 
-export function NavBarHz() {
+
+import { Google } from '../CadastroUsuarioGoogle';
+
+
+
+export function NavBar() {
   return (
     <nav className="nav">
       <div className="container">
         <div className="logo">
-          <img src={logoImg} alt="Logo" />
+        <Link to="/">Logo</Link>
+
         </div>
 
         <div className="main_list" id="mainListDiv">
           <ul>
-            <li>
-              <Link to="/">
-                <i className="pi pi-home"></i> Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/sobre">
-                <i className="pi pi-info-circle"></i> Sobre
-              </Link>
-            </li>
-            <li>
-              <Link to="/login">
-                <i className="pi pi-user"></i> Login
-              </Link>
-            </li>
-            <li>
-              <Link to="/carrinho">
-                <i className="pi pi-shopping-cart"></i> Carrinho
-              </Link>
-            </li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/sobre">Sobre</Link></li>
+            <li><Link to="/">Entrar</Link></li>
+            <li><Link to="/login">Cadastro</Link></li>
+            <li><Link to="/carrinho">Carrinho</Link></li>
+            <li><Google/></li>
           </ul>
         </div>
 
@@ -48,3 +38,4 @@ export function NavBarHz() {
     </nav>
   );
 }
+

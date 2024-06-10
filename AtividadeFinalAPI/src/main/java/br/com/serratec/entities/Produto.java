@@ -26,6 +26,7 @@ public class Produto {
 	private String nome;
 	private String descricao;
 	private BigDecimal precoUnitario;
+	private String urlFoto;
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
@@ -33,16 +34,15 @@ public class Produto {
 	@OneToMany(mappedBy = "id.produto", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Carrinho> carrinho = new HashSet<>();
 	
-	public Produto() {}
+	public Produto() {
+	}
 	
-
-
-
 	public Produto(ProdutoRequestDTO produto) {
 		nome = produto.getNome();
 		descricao = produto.getDescricao();
 		precoUnitario = produto.getPrecoUnitario();
 		categoria = produto.getCategoria();
+		urlFoto = produto.getUrlFoto();
 	}
 	
 
@@ -50,15 +50,9 @@ public class Produto {
 		return carrinho;
 	}
 
-
-
-
 	public void setCarrinho(Set<Carrinho> carrinho) {
 		this.carrinho = carrinho;
 	}
-
-
-
 
 	public Long getId() {
 		return id;
@@ -79,7 +73,13 @@ public class Produto {
 	public Categoria getCategoria() {
 		return categoria;
 	}
-
+	
+	public String getUrlFoto() { return urlFoto; }
+	
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
+	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -101,14 +101,11 @@ public class Produto {
 	}
 
 
-
-
 	@Override
 	public String toString() {
 		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", precoUnitario=" + precoUnitario
 				+ ", categoria=" + categoria + ", carrinho=" + carrinho + "]";
 	}
-	
 	
 
 }

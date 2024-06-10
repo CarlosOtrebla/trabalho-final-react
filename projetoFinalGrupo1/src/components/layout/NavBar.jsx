@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 import Login from '../../pages/login/Login';
+import ProductList from '../../pages/products/ProductList';
 
 export function NavBar() {
 
@@ -15,8 +16,9 @@ export function NavBar() {
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/sobre">Sobre</Link></li>
-            <li><Link to="/login">Login</Link></li>
             <li><Link to="/carrinho">Carrinho</Link></li>
+            <li><Link to="/produtos">Produtos</Link></li>
+            <li><Link to="/login">Login</Link></li>
           </ul>
         </div>
         <div className="media_button">

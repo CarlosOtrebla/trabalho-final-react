@@ -9,6 +9,7 @@ public class ProdutoResponseDTO {
 	private String descricao;
 	private BigDecimal precoUnitario;
 	private String nomeCategoria;
+	private String urlFoto;
 	
 	
 	
@@ -19,7 +20,8 @@ public class ProdutoResponseDTO {
 		this.descricao = produto.getDescricao();
 		this.precoUnitario = produto.getPrecoUnitario();
 		this.nomeCategoria = produto.getCategoria().getNome();
-	}
+        this.urlFoto = produto.getUrlFoto();
+    }
 	public String getNome() {
 		return nome;
 	}
@@ -44,10 +46,19 @@ public class ProdutoResponseDTO {
 	public void setNomeCategoria(String nomeCategoria) {
 		this.nomeCategoria = nomeCategoria;
 	}
+	
+	public String getUrlFoto() {
+		return urlFoto;
+	}
+	
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
+	}
+	
 	@Override
 	public String toString() {
 		return "ProdutoResponseDTO [nome=" + nome + ", descricao=" + descricao + ", precoUnitario=" + precoUnitario
-				+ ", nomeCategoria=" + nomeCategoria + "]";
+				+ ", nomeCategoria=" + nomeCategoria + ", urlFoto=" + urlFoto +"]";
 	}
 	
 	

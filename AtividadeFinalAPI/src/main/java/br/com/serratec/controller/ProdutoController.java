@@ -65,8 +65,8 @@ public class ProdutoController {
 		return ResponseEntity.created(null).body(service.inserirProduto(produto));
 	}
 	
-	@PutMapping
-	@Operation(summary = "Atualizar Produto", description = "Atualiza os dados de um produto existente pelo ID informado")
+	@PutMapping("/{id}")
+	@Operation(summary = "Atualizar Produto por {id}", description = "Atualiza os dados de um produto existente pelo ID informado")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Categoria atualizada com sucesso", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoResponseDTO.class))

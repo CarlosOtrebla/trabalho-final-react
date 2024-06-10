@@ -1,24 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './NavBar.css';
-import Login from '../../pages/login/Login';
+import logoImg from '../../assets/img/logo.jpeg';
+import 'primeicons/primeicons.css'; 
+import './NavBar.css'; 
 
-export function NavBar() {
-
+export function NavBarHz() {
   return (
     <nav className="nav">
       <div className="container">
         <div className="logo">
-          <Link to="/">Logo</Link>
+          <img src={logoImg} alt="Logo" />
         </div>
+
         <div className="main_list" id="mainListDiv">
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/sobre">Sobre</Link></li>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/carrinho">Carrinho</Link></li>
+            <li>
+              <Link to="/">
+                <i className="pi pi-home"></i> Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/sobre">
+                <i className="pi pi-info-circle"></i> Sobre
+              </Link>
+            </li>
+            <li>
+              <Link to="/login">
+                <i className="pi pi-user"></i> Login
+              </Link>
+            </li>
+            <li>
+              <Link to="/carrinho">
+                <i className="pi pi-shopping-cart"></i> Carrinho
+              </Link>
+            </li>
           </ul>
         </div>
+
         <div className="media_button">
           <button className="main_media_button" id="mediaButton">
             <span></span>

@@ -16,18 +16,10 @@
     "@react-oauth/google": "^0.12.1",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
-<<<<<<< HEAD
     "google-auth-library": "^9.10.0",
-=======
-    "framer-motion": "^11.2.10",
->>>>>>> 3f1f809b4c3a9cf9e705f68469e23b9b8168f0aa
     "jquery": "^3.7.1",
     "jsonwebtoken": "^9.0.2",
     "popper.js": "^1.16.1",
-<<<<<<< HEAD
-=======
-    "primeicons": "^7.0.0",
->>>>>>> 3f1f809b4c3a9cf9e705f68469e23b9b8168f0aa
     "primereact": "^10.6.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

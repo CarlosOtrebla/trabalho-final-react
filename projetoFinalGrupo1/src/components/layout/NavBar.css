@@ -14,7 +14,6 @@
   padding: 10px;
 }
 
-<<<<<<< HEAD
 /* Navbar section */
 
 .nav{
@@ -25,14 +24,6 @@
     line-height: 65px;
     text-align: center;
     background-color: rgba(0,0,255,0.8);
-=======
-.logo img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: flex-start;
->>>>>>> 3f1f809b4c3a9cf9e705f68469e23b9b8168f0aa
 }
 
 

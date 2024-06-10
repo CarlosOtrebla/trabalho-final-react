@@ -18,7 +18,8 @@ export function NavBar() {
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/sobre">Sobre</Link></li>
-            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/">Entrar</Link></li>
+            <li><Link to="/login">Cadastro</Link></li>
             <li><Link to="/carrinho">Carrinho</Link></li>
             <li><Google/></li>
           </ul>

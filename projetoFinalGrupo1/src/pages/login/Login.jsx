@@ -1,42 +1,82 @@
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import { Container, TextField, Button, Typography } from '@mui/material';
 import './styles.css';
-
+import axios from 'axios';
 
 
 export default function Login() {
   const [nome, setNome] = useState('');
-  const [nascimento, setNascimento] = useState('');
+  // const [nascimento, setNascimento] = useState('');
   const [telefone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
-  const [cep, setCep] = useState('');
+  // const [cep, setCep] = useState('');
   const [cadastrado, setCadastrado] = useState(false);
+
+  
+  const [isEmailTaken, setIsEmailTaken] = useState(false);
+
+  const checkEmail = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/clientes/listarClientes`);
+      if (response.data.length > 0) {
+        setIsEmailTaken(true);
+      } else {
+        setIsEmailTaken(false);
+      }
+    } catch (error) {
+      console.error("Erro ao verificar o e-mail", error);
+    }
+  };
+
+  useEffect(() => {
+    checkEmail();
+  }, [email]);
   
 
-  const handleCadastrar = () => {
+  const handleCadastrar = async () => {
     console.log("Dados do formulário:");
     console.log("Nome:", nome);
-    console.log("Nascimento:", nascimento);
+    
     console.log("Telefone:", telefone);
     console.log("Email:", email);
     console.log("CPF:", cpf);
-    console.log("CEP:", cep);
+    // console.log("CEP:", cep);
     
-    setCadastrado(true);
+    const usuario = {
+      nome,
+      telefone,
+      email,
+      cpf,
+      };
+  
+    try {
+      // Faz uma solicitação POST para a API para criar o usuário
+      const response = await axios.post('http://localhost:8080/clientes/cadastrar', usuario);
+
+  
+      if ([200, 201].includes(response.status))  {
+        console.log('Usuário cadastrado com sucesso!');
+        setCadastrado(true);
+      } else {
+        console.log('Erro ao cadastrar usuário:', response);
+      }
+    } catch (error) {
+      console.error('Erro ao cadastrar usuário:', error);
+    }
 
     setNome('');
-    setNascimento('');
+    
     setTelefone('');
     setEmail('');
     setCpf('');
-    setCep('');
+    // setCep('');
 
   };
 
   return (
     <Container maxWidth="sm" component="article" className="form">
-      <h1>Crie Seu Login</h1>
+      <h1>Crie Seu Cadastro</h1>
       <form onSubmit={(event) => { event.preventDefault(); }}>
         <TextField
           id="nome"
@@ -47,7 +87,7 @@ export default function Login() {
           value={nome}
           onChange={(event) => setNome(event.target.value)}
         />
-        <TextField
+        {/* <TextField
           id="nascimento"
           label="Nascimento"
           type="date"
@@ -59,7 +99,7 @@ export default function Login() {
           InputLabelProps={{
             shrink: true,
           }}
-        />
+        /> */}
         <TextField
           id="telefone"
           label="Telefone"
@@ -69,16 +109,18 @@ export default function Login() {
           value={telefone}
           onChange={(event) => setTelefone(event.target.value)}
         />
-        <TextField
-          id="email"
-          label="Email"
-          type="email"
-          variant="outlined"
-          margin="dense"
-          fullWidth
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
+       
+      <TextField
+        id="email"
+        label="Email"
+        type="email"
+        variant="outlined"
+        margin="dense"
+        fullWidth
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+      />
+      
         <TextField
           id="cpf"
           label="CPF"
@@ -88,7 +130,7 @@ export default function Login() {
           value={cpf}
           onChange={(event) => setCpf(event.target.value)}
         />
-        <TextField
+        {/* <TextField
           id="cep"
           label="CEP"
           variant="outlined"
@@ -96,7 +138,7 @@ export default function Login() {
           fullWidth
           value={cep}
           onChange={(event) => setCep(event.target.value)}
-        />
+        /> */}
 
         <Button
           type="button"
@@ -115,6 +157,7 @@ export default function Login() {
       )}
     </Container>
   );
+  
 }
 
 // nome tel email cpf

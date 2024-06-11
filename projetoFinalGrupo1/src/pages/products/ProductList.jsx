@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import ProductCard from './ProductCard';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import ProductCard from "./ProductCard";
 
 const ProductList = () => {
   const [produtos, setProdutos] = useState([]);
@@ -10,7 +10,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProdutos = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/produtos');
+        const response = await axios.get("http://localhost:8080/produtos");
         setProdutos(response.data);
       } catch (error) {
         setError(error.message);
@@ -41,9 +41,9 @@ const ProductList = () => {
 
 const styles = {
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
   },
 };
 

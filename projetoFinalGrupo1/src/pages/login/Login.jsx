@@ -1,8 +1,21 @@
+
 import { useState , useEffect } from 'react';
 import { Container, TextField, Button, Typography } from '@mui/material';
 import './styles.css';
 import axios from 'axios';
 
+
+function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setError("");
 
 export default function Login() {
   const [nome, setNome] = useState('');
@@ -72,9 +85,24 @@ export default function Login() {
     setCpf('');
     // setCep('');
 
+
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log(`Username: ${username}, Password: ${password}`);
+    } catch (err) {
+      setError("Failed to login. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
+
+    <div className="login-container">
+      <h2>Login Page</h2>
+
+      {error && <p className="error">{error}</p>}
+
     <Container maxWidth="sm" component="article" className="form">
       <h1>Crie Seu Cadastro</h1>
       <form onSubmit={(event) => { event.preventDefault(); }}>
@@ -140,31 +168,43 @@ export default function Login() {
           onChange={(event) => setCep(event.target.value)}
         /> */}
 
-        <Button
-          type="button"
-          className="btn-form"
-          variant="contained"
-          color="primary"
-          onClick={handleCadastrar}
-        >
-          Cadastrar
-        </Button>
+
+      <form onSubmit={handleLogin}>
+        <div className="form-group">
+          <label>
+            Username:
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Password:
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+
+        <div className="form-group">
+          <input type="submit" value="Login" disabled={loading} />
+        </div>
       </form>
-      {cadastrado && (
-        <Typography variant="h6" color="secondary" className="mensagem-sucesso">
-          Usuário cadastrado com sucesso!
-        </Typography>
-      )}
-    </Container>
+
+      {loading && <p>Loading...</p>}
+    </div>
   );
   
 }
 
-// nome tel email cpf
-// url cep
-// {
-//   "nome": "Patrick",
-//   "telefone":"(24)98845-0909",
-//   "email": "joao@gmail.com",
-//   "cpf": "08807763745"
-// }
+
+export default Login;
+

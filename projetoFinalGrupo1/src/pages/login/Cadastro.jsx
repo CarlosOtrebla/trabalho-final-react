@@ -1,26 +1,30 @@
-import { useState , useEffect } from 'react';
-import { Container, TextField, Button, Typography } from '@mui/material';
-import './styles.css';
-import axios from 'axios';
 
+import { useState, useEffect } from "react";
+import { Container, TextField, Button, Typography } from "@mui/material";
+import "./styles.css";
+import axios from "axios";
 
 export default function Cadastro() {
-  const [nome, setNome] = useState('');
+  const [nome, setNome] = useState("");
   // const [nascimento, setNascimento] = useState('');
-  const [telefone, setTelefone] = useState('');
-  const [email, setEmail] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [cep, setCep] = useState('');
+  const [telefone, setTelefone] = useState("");
+  const [email, setEmail] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [cep, setCep] = useState("");
   const [cadastrado, setCadastrado] = useState(false);
-  const [senha , setSenha] = useState('')
-  const [ confirmasenha , setConfirmaSenha] = useState('')
+  const [senha, setSenha] = useState("");
+  const [confirmasenha, setConfirmaSenha] = useState("");
 
-  
+
   const [isEmailTaken, setIsEmailTaken] = useState(false);
 
   const checkEmail = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/clientes/listarClientes`);
+
+      const response = await axios.get(
+        `http://localhost:8080/clientes/listarClientes`
+      );
+
       if (response.data.length > 0) {
         setIsEmailTaken(true);
       } else {
@@ -34,22 +38,24 @@ export default function Cadastro() {
   useEffect(() => {
     checkEmail();
   }, [email]);
-  
+
 
   const handleCadastrar = async () => {
     console.log("Dados do formulário:");
     console.log("Nome:", nome);
-    
+
     console.log("Telefone:", telefone);
     console.log("Email:", email);
     console.log("CPF:", cpf);
     console.log("CEP:", cep);
-    
+
     const usuario = {
       nome,
       telefone,
       email,
       cpf,
+
+
       };
   
     try {
@@ -74,12 +80,15 @@ export default function Cadastro() {
     setCpf('');
     setCep('');
 
+
   };
 
   return (
     <Container maxWidth="sm" component="article" className="form">
       <h1>Crie Seu Cadastro</h1>
+
       <form onSubmit={(event) => { event.preventDefault(); }}>
+
         <TextField
           id="nome"
           label="Nome"
@@ -111,18 +120,20 @@ export default function Cadastro() {
           value={telefone}
           onChange={(event) => setTelefone(event.target.value)}
         />
-       
-      <TextField
-        id="email"
-        label="Email"
-        type="email"
-        variant="outlined"
-        margin="dense"
-        fullWidth
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-      />
-      
+
+
+        <TextField
+          id="email"
+          label="Email"
+          type="email"
+          variant="outlined"
+          margin="dense"
+          fullWidth
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+        />
+
+
         <TextField
           id="cpf"
           label="CPF"
@@ -159,14 +170,4 @@ export default function Cadastro() {
       )}
     </Container>
   );
-  
-}
 
-// nome tel email cpf
-// url cep
-// {
-//   "nome": "Patrick",
-//   "telefone":"(24)98845-0909",
-//   "email": "joao@gmail.com",
-//   "cpf": "08807763745"
-// }

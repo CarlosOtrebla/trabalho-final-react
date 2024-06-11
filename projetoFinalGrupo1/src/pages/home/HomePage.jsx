@@ -8,10 +8,6 @@ import "./HomePage.css";
 export function HomePage() {
   return (
     <div className="pagina-inicial">
-      <div className="barra-navegacao-horizontal">
-        <NavBarHz />
-      </div>
-
       <div className="imagem-secao">
         <img
           src="https://file.rendit.io/n/qyOX3M9x98.png"

@@ -19,7 +19,7 @@ function Login() {
     // Find the user that matches the entered email
     const user = users.find(user => user.email === email);
   
-    if (user && password === loginPassword) { // Check if the entered password matches the stored password
+    if (user && loginPassword === loginPassword) { // Check if the entered password matches the stored password
       console.log('Login successful');
       // Handle successful login here
     } else {

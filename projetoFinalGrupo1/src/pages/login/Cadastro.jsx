@@ -53,6 +53,7 @@ export default function Cadastro() {
     console.log("CPF:", cpf);
     console.log("CEP:", cep);
     console.log("Senha:", senha);
+    console.log("Confirmar Senha:", confirmasenha);
 
     const usuario = {
       nome,
@@ -86,8 +87,20 @@ export default function Cadastro() {
     setCpf('');
     setCep('');
     setSenha('');
+    setConfirmaSenha('');
 
 
+  };
+  const handleConfirmacaoSenhaChange = (event) => {
+    setConfirmaSenha(event.target.value);
+  };
+
+  const verificarSenhas = () => {
+    if (senha !== confirmasenha) {
+      alert('As senhas não correspondem!');
+    } else {
+      alert('As senhas correspondem!');
+    }
   };
 
   return (
@@ -107,7 +120,7 @@ export default function Cadastro() {
           value={nome}
           onChange={(event) => setNome(event.target.value)}
         />
-        <ProductList/>
+        {/* <ProductList/> */}
         {/* <TextField
           id="nascimento"
           label="Nascimento"
@@ -170,8 +183,17 @@ export default function Cadastro() {
           margin="dense"
           fullWidth
           
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={(event) => setSenha(event.target.value)}
         />
+        <TextField
+        id="confirmaSenha"
+        label="Confirme sua Senha"
+        variant="outlined"
+        margin="dense"
+        fullWidth
+        onChange={handleConfirmacaoSenhaChange}
+        onBlur={verificarSenhas}
+      />
 
         <Button
           type="button"

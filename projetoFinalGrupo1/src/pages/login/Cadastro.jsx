@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect, useContext } from "react"; // Import useContext from React
 import { Container, TextField, Button, Typography } from "@mui/material";
 import "./styles.css";
 import axios from "axios";
 import ProductList from "../products/ProductList";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/Context";
 
 export default function Cadastro() {
@@ -19,12 +18,10 @@ export default function Cadastro() {
   const [senha, setSenha] = useState("");
   const [confirmasenha, setConfirmaSenha] = useState("");
 
-  
   const [isEmailTaken, setIsEmailTaken] = useState(false);
 
   const checkEmail = async () => {
     try {
-
       const response = await axios.get(
         `http://localhost:8080/clientes/listarClientes`
       );
@@ -43,7 +40,6 @@ export default function Cadastro() {
     checkEmail();
   }, [email]);
 
-
   const handleCadastrar = async () => {
     console.log("Dados do formulário:");
     console.log("Nome:", nome);
@@ -60,36 +56,33 @@ export default function Cadastro() {
       telefone,
       email,
       cpf,
-      
+    };
 
-
-      };
-  
     try {
       // Faz uma solicitação POST para a API para criar o usuário
-      const response = await axios.post(`http://localhost:8080/clientes/cadastrar/${cep}`, usuario);
+      const response = await axios.post(
+        `http://localhost:8080/clientes/cadastrar/${cep}`,
+        usuario
+      );
 
-  
-      if ([200, 201].includes(response.status))  {
-        console.log('Usuário cadastrado com sucesso!');
+      if ([200, 201].includes(response.status)) {
+        console.log("Usuário cadastrado com sucesso!");
         setCadastrado(true);
       } else {
-        console.log('Erro ao cadastrar usuário:', response);
+        console.log("Erro ao cadastrar usuário:", response);
       }
     } catch (error) {
-      console.error('Erro ao cadastrar usuário:', error);
+      console.error("Erro ao cadastrar usuário:", error);
     }
 
-    setNome('');
-    
-    setTelefone('');
-    setEmail('');
-    setCpf('');
-    setCep('');
-    setSenha('');
-    setConfirmaSenha('');
+    setNome("");
 
-
+    setTelefone("");
+    setEmail("");
+    setCpf("");
+    setCep("");
+    setSenha("");
+    setConfirmaSenha("");
   };
   const handleConfirmacaoSenhaChange = (event) => {
     setConfirmaSenha(event.target.value);
@@ -97,20 +90,21 @@ export default function Cadastro() {
 
   const verificarSenhas = () => {
     if (senha !== confirmasenha) {
-      alert('As senhas não correspondem!');
+      alert("As senhas não correspondem!");
     } else {
-      alert('As senhas correspondem!');
+      alert("As senhas correspondem!");
     }
   };
 
   return (
-    
-    
     <Container maxWidth="sm" component="article" className="form">
       <h1>Crie Seu Cadastro</h1>
 
-      <form onSubmit={(event) => { event.preventDefault(); }}>
-
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
         <TextField
           id="nome"
           label="Nome"
@@ -144,7 +138,6 @@ export default function Cadastro() {
           onChange={(event) => setTelefone(event.target.value)}
         />
 
-
         <TextField
           id="email"
           label="Email"
@@ -155,7 +148,6 @@ export default function Cadastro() {
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
-
 
         <TextField
           id="cpf"
@@ -175,25 +167,24 @@ export default function Cadastro() {
           value={cep}
           onChange={(event) => setCep(event.target.value)}
         />
-        
-         <TextField
+
+        <TextField
           id="senha"
           label="Senha"
           variant="outlined"
           margin="dense"
           fullWidth
-          
           onChange={(event) => setSenha(event.target.value)}
         />
         <TextField
-        id="confirmaSenha"
-        label="Confirme sua Senha"
-        variant="outlined"
-        margin="dense"
-        fullWidth
-        onChange={handleConfirmacaoSenhaChange}
-        onBlur={verificarSenhas}
-      />
+          id="confirmaSenha"
+          label="Confirme sua Senha"
+          variant="outlined"
+          margin="dense"
+          fullWidth
+          onChange={handleConfirmacaoSenhaChange}
+          onBlur={verificarSenhas}
+        />
 
         <Button
           type="button"
@@ -213,6 +204,5 @@ export default function Cadastro() {
         </Typography>
       )}
     </Container>
- 
-  )
+  );
 }

@@ -80,17 +80,20 @@ body {
 }
 
 .melhores-ofertas {
+  display: flex;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .galeria-rolavel {
   display: flex;
   overflow-x: auto;
   gap: 20px;
+  padding: 20px;
 }
 
 .item-galeria {
-  min-width: 200px;
+  width: 200px;
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 10px;
@@ -99,7 +102,9 @@ body {
 }
 
 .imagem-galeria {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
   margin-bottom: 10px;
+  border-radius: 10px;
 }

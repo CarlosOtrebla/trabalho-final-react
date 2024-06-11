@@ -1,31 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./carrinho.css";
-import { NavBar } from "../../components/layout/NavBar";
+import axios from 'axios';
 
-const items = [
-  { id: 1, name: "Monitor Gamer", price: 1200 },
-  { id: 2, name: "Teclado Mecânico", price: 250 },
-  { id: 3, name: "Mouse sem fio", price: 80 },
-  { id: 4, name: "SSD 1TB", price: 300 },
-];
 
 export function Carrinho() {
-  // State para controlar a quantidade de cada item
-  const [quantidades, setQuantidades] = useState(
-    items.reduce((acc, item) => {
-      acc[item.id] = 1; // Começa com quantidade 1 para cada item
-      return acc;
-    }, {})
-  );
+  const [items, setItems] = useState([]);
+  const [quantidades, setQuantidades] = useState({});
+  const [total, setTotal] = useState(0);
 
-  // Função para aumentar a quantidade de um item
+  useEffect(() => {
+    const api = axios.create({
+      baseURL: 'http://localhost:8080',
+    });
+
+    api.get('/carrinho')
+    .then(response => {
+      console.log('Itens do carrinho:', response.data); // Imprime os itens do carrinho
+      const itensApi = response.data;
+      setItems(itensApi);
+      const quantidadesIniciais = itensApi.reduce((acc, item) => {
+        acc[item.id] = 1; 
+        return acc;
+      }, {});
+      setQuantidades(quantidadesIniciais);
+    })
+    .catch(error => {
+      console.error("Erro ao buscar itens do carrinho:", error);
+    });
+
+  api.get('/carrinho/valor-total')
+    .then(response => {
+      console.log('Valor total do carrinho:', response.data); // Imprime o valor total do carrinho
+      setTotal(response.data);
+    })
+    .catch(error => {
+      console.error("Erro ao calcular o valor total do carrinho:", error);
+    });
+}, []);
+
   const aumentarQuantidade = (id) => {
     const novasQuantidades = { ...quantidades };
     novasQuantidades[id] = novasQuantidades[id] + 1;
     setQuantidades(novasQuantidades);
   };
 
-  // Função para diminuir a quantidade de um item
   const diminuirQuantidade = (id) => {
     const novasQuantidades = { ...quantidades };
     if (novasQuantidades[id] > 1) {
@@ -34,26 +52,18 @@ export function Carrinho() {
     }
   };
 
-  // Função para remover um item do carrinho
   const removerItem = (id) => {
     const novasQuantidades = { ...quantidades };
     delete novasQuantidades[id];
     setQuantidades(novasQuantidades);
   };
 
-  // Função para remover todos os itens do carrinho
   const removerTodosItens = () => {
     setQuantidades({});
   };
 
-  // Calcula o total do carrinho
-  const total = Object.keys(quantidades).reduce((acc, id) => {
-    const item = items.find((item) => item.id.toString() === id);
-    return acc + item.price * quantidades[id];
-  }, 0);
-
   return (
-    <div className="carriho-container">
+    <div className="carrinho-container">
       <div className="carrinho">
         <h2>Carrinho de Compras</h2>
         <ul>

@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/Context';
+import './login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -29,7 +30,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login Page</h2>
       <form onSubmit={handleLogin}>
         <label>

@@ -1,4 +1,4 @@
-/* HomePage.css */
+
 html,
 body {
   display: flex;
@@ -19,7 +19,7 @@ body {
 
 .barra-navegacao-horizontal {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .imagem-secao {

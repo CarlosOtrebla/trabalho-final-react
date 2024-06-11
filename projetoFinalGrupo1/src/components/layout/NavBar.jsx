@@ -1,8 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import logoImg from '../../assets/img/logo.jpeg';
-import 'primeicons/primeicons.css'; 
-import './NavBar.css'; 
+import React from "react";
+import { Link } from "react-router-dom";
+import logoImg from "../../assets/img/logo.jpeg";
+import "primeicons/primeicons.css";
+import { Google } from "../CadastroUsuarioGoogle";
+import "./NavBar.css";
 
 export function NavBarHz() {
   return (
@@ -30,9 +31,17 @@ export function NavBarHz() {
               </Link>
             </li>
             <li>
+              <Link to="/cadastro">
+                <i className="pi pi-user-plus"></i> Cadastro
+              </Link>
+            </li>
+            <li>
               <Link to="/carrinho">
                 <i className="pi pi-shopping-cart"></i> Carrinho
               </Link>
+            </li>
+            <li>
+              <Google />
             </li>
           </ul>
         </div>

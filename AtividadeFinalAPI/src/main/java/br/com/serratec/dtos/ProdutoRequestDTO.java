@@ -18,6 +18,7 @@ public class ProdutoRequestDTO {
     private BigDecimal precoUnitario;
     @NotNull
     private Categoria categoria;
+    private String urlFoto;
     
     public ProdutoRequestDTO() {
     }
@@ -27,6 +28,7 @@ public class ProdutoRequestDTO {
         descricao = produto.getDescricao();
         precoUnitario = produto.getPrecoUnitario();
         categoria = produto.getCategoria();
+        urlFoto = produto.getUrlFoto();
     }
     
     public String getNome() {
@@ -59,5 +61,13 @@ public class ProdutoRequestDTO {
     
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+    
+    public String getUrlFoto() {
+        return urlFoto;
+    }
+    
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
     }
 }

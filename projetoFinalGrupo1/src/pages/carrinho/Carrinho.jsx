@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./carrinho.css";
-import { NavBarHz } from "../../components/layout/NavBar";
+import { NavBar } from "../../components/layout/NavBar";
 
 const items = [
   { id: 1, name: "Monitor Gamer", price: 1200 },

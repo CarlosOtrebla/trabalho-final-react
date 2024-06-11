@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { NavBarHz } from "../../components/layout/NavBar";
+import { NavBar } from "../../components/layout/NavBar";
 import { Button } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import "./HomePage.css";
 
 export function HomePage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  const Slideshow = ({ images, currentImageIndex }) => (
+    <AnimatePresence>
+      <motion.img
+        key={images[currentImageIndex].id}
+        src={images[currentImageIndex].src}
+        initial={{ x: 300, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        exit={{ x: -300, opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="imagem-destaque"
+      />
+    </AnimatePresence>
+  );
   const images = [
     { id: 1, src: "https://file.rendit.io/n/qyOX3M9x98.png" },
     { id: 2, src: "https://file.rendit.io/n/RsxQYJZ530.png" },
@@ -27,7 +39,7 @@ export function HomePage() {
   return (
     <div className="pagina-inicial">
       <div className="barra-navegacao-horizontal">
-        <NavBarHz />
+        <NavBar />
       </div>
 
       <div className="imagem-secao">
@@ -46,11 +58,7 @@ export function HomePage() {
       </div>
 
 
-import { useNavigate } from 'react-router-dom';
-import { NavBar } from '../../components/layout/NavBar';
-import { Botao } from '../../components/Button/Button';
-import './HomePage.css'
-import ProductList from '../products/ProductList';
+
 
 
       <div className="melhores-ofertas">
@@ -86,37 +94,10 @@ import ProductList from '../products/ProductList';
         </div>
       </div>
     </div>
+  
+
+
+
   );
 }
 
-const Slideshow = ({ images, currentImageIndex }) => (
-  <AnimatePresence>
-    <motion.img
-      key={images[currentImageIndex].id}
-      src={images[currentImageIndex].src}
-      initial={{ x: 300, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: -300, opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      className="imagem-destaque"
-    />
-  </AnimatePresence>
-);
-
-function MenuIcon(props) {
-export function HomePage() {
-  return (
-    <>
-      <NavBar/> 
-      
-      <br />
-      <br />
-      {/* <Botao onclick={handleNavigateToLogin} valor={'Login'} /> */}
-      <br />
-      <br />
-      <ProductList/>
-    </>
-  );
-}
-
-export default HomePage;

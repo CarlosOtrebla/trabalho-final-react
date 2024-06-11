@@ -2,7 +2,7 @@ import React from "react";
 import "./sobre.css";
 import logoSerraTech from "/src/assets/img/logo.jpeg";
 
-import { NavBarHz } from "../../components/layout/NavBar";
+import { NavBar } from "../../components/layout/NavBar";
 
 const descricaoGrupo = {
   nome: "Serra Tech: Inovação e Tecnologia em Harmonia",
@@ -46,7 +46,7 @@ const team = [
 export function Sobre() {
   return (
     <>
-      <NavBarHz />
+      <NavBar />
       <div className="sobre">
         <div className="descricao">
           <h1>{descricaoGrupo.nome}</h1>

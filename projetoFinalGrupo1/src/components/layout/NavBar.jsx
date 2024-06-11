@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import logoImg from "../../assets/img/logo.jpeg";
@@ -6,27 +5,24 @@ import "primeicons/primeicons.css";
 import { Google } from "../CadastroUsuarioGoogle";
 import "./NavBar.css";
 
-
-
-import { Google } from '../CadastroUsuarioGoogle';
-
-
-
 export function NavBar() {
   return (
     <nav className="nav">
       <div className="container">
         <div className="logo">
-        <Link to="/">Logo</Link>
-
+          <img src={logoImg} alt="Logo" />
         </div>
 
         <div className="main_list" id="mainListDiv">
           <ul>
-
             <li>
               <Link to="/">
                 <i className="pi pi-home"></i> Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/produto">
+                <i className="pi pi-tag"></i> Produtos
               </Link>
             </li>
             <li>
@@ -52,7 +48,6 @@ export function NavBar() {
             <li>
               <Google />
             </li>
-
           </ul>
         </div>
 
@@ -67,4 +62,3 @@ export function NavBar() {
     </nav>
   );
 }
-

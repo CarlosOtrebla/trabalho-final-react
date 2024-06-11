@@ -26,6 +26,7 @@ public class Produto {
 	private String nome;
 	private String descricao;
 	private BigDecimal precoUnitario;
+	private String urlFoto;
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
@@ -43,8 +44,14 @@ public class Produto {
 		descricao = produto.getDescricao();
 		precoUnitario = produto.getPrecoUnitario();
 		categoria = produto.getCategoria();
+		urlFoto = produto.getUrlFoto();
 	}
 	
+public String getUrlFoto() { return urlFoto; }
+	
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
+	}
 
 	public Set<Carrinho> getCarrinho() {
 		return carrinho;

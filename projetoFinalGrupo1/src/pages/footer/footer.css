@@ -2,7 +2,7 @@
   background-color: #27333f; 
   color: #ffffff;
   font-size: 14px; 
-  position: fixed; 
+  align-items: flex-end;
   padding: 10px 0; 
   bottom: 0; 
   left: 0; 

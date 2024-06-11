@@ -6,7 +6,6 @@ import br.com.serratec.customannotation.Telefone;
 import br.com.serratec.entities.Endereco;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 public class ClienteRequestDTO {
     @NotBlank
@@ -17,7 +16,7 @@ public class ClienteRequestDTO {
     private String email;
     @CPF
     private String cpf;
-    //private Endereco endereco;
+    private Endereco endereco;
     
     public String getNome() {
         return nome;
@@ -51,11 +50,11 @@ public class ClienteRequestDTO {
         this.cpf = cpf;
     }
     
-//    public Endereco getEndereco() {
-//        return endereco;
-//    }
-//    
-//    public void setEndereco(Endereco endereco) {
-//        this.endereco = endereco;
-//    }
+    public Endereco getEndereco() {
+        return endereco;
+    }
+    
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 }

@@ -9,6 +9,7 @@ public class ClienteResponseDTO {
 	private String telefone;
 	private String email;
 	private String cpf;
+	private Endereco endereco;
 	
 	
 	public ClienteResponseDTO() {
@@ -21,6 +22,7 @@ public class ClienteResponseDTO {
 		telefone = cliente.getTelefone();
 		email = cliente.getEmail();
 		cpf = cliente.getCpf();
+		endereco = cliente.getEndereco();
 		
 	}
 	
@@ -37,9 +39,9 @@ public class ClienteResponseDTO {
 	public String getCpf() {
 		return cpf;
 	}
-//	public Endereco getEndereco() {
-//		return endereco;
-//	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -52,9 +54,9 @@ public class ClienteResponseDTO {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-//	public void setEndereco(Endereco endereco) {
-//		this.endereco = endereco;
-//	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 	
 	
 

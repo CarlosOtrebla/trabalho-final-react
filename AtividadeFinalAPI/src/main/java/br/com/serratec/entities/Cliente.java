@@ -34,18 +34,19 @@ public class Cliente {
 
 	}
 
-	public Cliente(String nome, String telefone, String email, String cpf) {
+	public Cliente(String nome, String telefone, String email, String cpf, Endereco endereco) {
 		super();
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
 		this.cpf = cpf;
+		this.endereco = endereco;
 		
 	}
 
-//	public Endereco getEndereco() {
-//		return endereco;
-//	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
 
 	public Long getId() {
 		return id;
@@ -87,9 +88,9 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-//	public void setEndereco(Endereco endereco) {
-//		this.endereco = endereco;
-//	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
 	@Override
 	public String toString() {

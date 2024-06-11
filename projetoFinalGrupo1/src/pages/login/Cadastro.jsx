@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Container, TextField, Button, Typography } from "@mui/material";
 import "./styles.css";
 import axios from "axios";
+import ProductList from "../products/ProductList";
 
 export default function Cadastro() {
   const [nome, setNome] = useState("");
@@ -98,6 +99,7 @@ export default function Cadastro() {
           value={nome}
           onChange={(event) => setNome(event.target.value)}
         />
+        <ProductList/>
         {/* <TextField
           id="nascimento"
           label="Nascimento"
@@ -169,5 +171,5 @@ export default function Cadastro() {
         </Typography>
       )}
     </Container>
-  );
-
+  )
+}

@@ -45,26 +45,13 @@ export function HomePage() {
         </Button>
       </div>
 
-      <div className="categorias-populares">
-        <h2 className="titulo">Categorias Populares</h2>
-        <div className="grupo-chip">
-          <Button variant="outlined" className="item-chip">
-            Smartphones
-          </Button>
-          <Button variant="outlined" className="item-chip">
-            Acessórios
-          </Button>
-          <Button variant="outlined" className="item-chip">
-            Tablets
-          </Button>
-          <Button variant="outlined" className="item-chip">
-            Computadores
-          </Button>
-          <Button variant="outlined" className="item-chip">
-            Carregadores
-          </Button>
-        </div>
-      </div>
+
+import { useNavigate } from 'react-router-dom';
+import { NavBar } from '../../components/layout/NavBar';
+import { Botao } from '../../components/Button/Button';
+import './HomePage.css'
+import ProductList from '../products/ProductList';
+
 
       <div className="melhores-ofertas">
         <h2 className="titulo">Melhores Ofertas</h2>
@@ -117,23 +104,18 @@ const Slideshow = ({ images, currentImageIndex }) => (
 );
 
 function MenuIcon(props) {
+export function HomePage() {
   return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="4" x2="20" y1="12" y2="12" />
-      <line x1="4" x2="20" y1="6" y2="6" />
-      <line x1="4" x2="20" y1="18" y2="18" />
-    </svg>
+    <>
+      <NavBar/> 
+      
+      <br />
+      <br />
+      {/* <Botao onclick={handleNavigateToLogin} valor={'Login'} /> */}
+      <br />
+      <br />
+      <ProductList/>
+    </>
   );
 }
 

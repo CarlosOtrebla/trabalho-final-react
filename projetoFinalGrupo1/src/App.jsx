@@ -4,14 +4,18 @@ import { useState } from "react";
 
 import { Rotas } from "./routes/Routes";
 
-function App() {
-  const [count, setCount] = useState(0);
 
+function App() {
+
+  
+   
   return (
     <>
-      <div>
-        <Rotas />
-      </div>
+     <div>
+      <Rotas/>
+    
+     
+     </div>
     </>
   );
 }

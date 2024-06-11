@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HomePage } from "../pages/home/HomePage";
+
 import Login from "../pages/login/Login";
 import { Sobre } from "../pages/sobre/Sobre";
 import Contato from "../pages/contato/Contato";
 import Footer from "../pages/footer/Footer";
 import { Carrinho } from "../pages/carrinho/Carrinho";
 import Cadastro from "../pages/login/Cadastro";
+
 
 export function Rotas() {
   return (

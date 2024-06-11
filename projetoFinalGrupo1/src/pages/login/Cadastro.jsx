@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Container, TextField, Button, Typography } from "@mui/material";
 import "./styles.css";
@@ -14,13 +15,16 @@ export default function Cadastro() {
   const [senha, setSenha] = useState("");
   const [confirmasenha, setConfirmaSenha] = useState("");
 
+
   const [isEmailTaken, setIsEmailTaken] = useState(false);
 
   const checkEmail = async () => {
     try {
+
       const response = await axios.get(
         `http://localhost:8080/clientes/listarClientes`
       );
+
       if (response.data.length > 0) {
         setIsEmailTaken(true);
       } else {
@@ -34,6 +38,7 @@ export default function Cadastro() {
   useEffect(() => {
     checkEmail();
   }, [email]);
+
 
   const handleCadastrar = async () => {
     console.log("Dados do formulário:");
@@ -49,41 +54,41 @@ export default function Cadastro() {
       telefone,
       email,
       cpf,
-    };
 
+
+      };
+  
     try {
       // Faz uma solicitação POST para a API para criar o usuário
-      const response = await axios.post(
-        `http://localhost:8080/clientes/cadastrar/${cep}`,
-        usuario
-      );
+      const response = await axios.post(`http://localhost:8080/clientes/cadastrar/${cep}`, usuario);
 
-      if ([200, 201].includes(response.status)) {
-        console.log("Usuário cadastrado com sucesso!");
+  
+      if ([200, 201].includes(response.status))  {
+        console.log('Usuário cadastrado com sucesso!');
         setCadastrado(true);
       } else {
-        console.log("Erro ao cadastrar usuário:", response);
+        console.log('Erro ao cadastrar usuário:', response);
       }
     } catch (error) {
-      console.error("Erro ao cadastrar usuário:", error);
+      console.error('Erro ao cadastrar usuário:', error);
     }
 
-    setNome("");
+    setNome('');
+    
+    setTelefone('');
+    setEmail('');
+    setCpf('');
+    setCep('');
 
-    setTelefone("");
-    setEmail("");
-    setCpf("");
-    setCep("");
+
   };
 
   return (
     <Container maxWidth="sm" component="article" className="form">
       <h1>Crie Seu Cadastro</h1>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-        }}
-      >
+
+      <form onSubmit={(event) => { event.preventDefault(); }}>
+
         <TextField
           id="nome"
           label="Nome"
@@ -116,6 +121,7 @@ export default function Cadastro() {
           onChange={(event) => setTelefone(event.target.value)}
         />
 
+
         <TextField
           id="email"
           label="Email"
@@ -126,6 +132,7 @@ export default function Cadastro() {
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
+
 
         <TextField
           id="cpf"
@@ -163,13 +170,4 @@ export default function Cadastro() {
       )}
     </Container>
   );
-}
 
-// nome tel email cpf
-// url cep
-// {
-//   "nome": "Patrick",
-//   "telefone":"(24)98845-0909",
-//   "email": "joao@gmail.com",
-//   "cpf": "08807763745"
-// }

@@ -1,117 +1,61 @@
-import { useState } from 'react';
-import { Container, TextField, Button, Typography } from '@mui/material';
-import './styles.css';
+import React, { useContext, useState, useEffect } from 'react';
+import { AuthContext } from '../../context/Context';
 
-
-export default function Login() {
-  const [nome, setNome] = useState('');
-  const [nascimento, setNascimento] = useState('');
-  const [telefone, setTelefone] = useState('');
+function Login() {
   const [email, setEmail] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [cep, setCep] = useState('');
-  const [cadastrado, setCadastrado] = useState(false);
+  const [loginPassword, setLoginPassword] = useState(''); // Use a separate state for the login password
+  const { password } = useContext(AuthContext);
+  useEffect(() => {
+    console.log(password);
+  }, [password]);
 
-  const handleCadastrar = () => {
-    console.log("Dados do formulário:");
-    console.log("Nome:", nome);
-    console.log("Nascimento:", nascimento);
-    console.log("Telefone:", telefone);
-    console.log("Email:", email);
-    console.log("CPF:", cpf);
-    console.log("CEP:", cep);
-    
-    setCadastrado(true);
-
-    setNome('');
-    setNascimento('');
-    setTelefone('');
-    setEmail('');
-    setCpf('');
-    setCep('');
-
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    console.log(`Email: ${email}, Password: ${loginPassword}`);
+  
+    const response = await fetch('http://localhost:8080/clientes/listarClientes');
+    const users = await response.json();
+  
+    // Find the user that matches the entered email
+    const user = users.find(user => user.email === email);
+  
+    if (user && password === loginPassword) { // Check if the entered password matches the stored password
+      console.log('Login successful');
+      // Handle successful login here
+    } else {
+      console.log('Invalid email or password');
+      // Handle failed login here
+    }
   };
 
   return (
-    <Container maxWidth="sm" component="article" className="form">
-      <h1>Crie Seu Login</h1>
-      <form onSubmit={(event) => { event.preventDefault(); }}>
-        <TextField
-          id="nome"
-          label="Nome"
-          variant="outlined"
-          margin="dense"
-          fullWidth
-          value={nome}
-          onChange={(event) => setNome(event.target.value)}
-        />
-        <TextField
-          id="nascimento"
-          label="Nascimento"
-          type="date"
-          variant="outlined"
-          margin="dense"
-          fullWidth
-          value={nascimento}
-          onChange={(event) => setNascimento(event.target.value)}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        <TextField
-          id="telefone"
-          label="Telefone"
-          variant="outlined"
-          margin="dense"
-          fullWidth
-          value={telefone}
-          onChange={(event) => setTelefone(event.target.value)}
-        />
-        <TextField
-          id="email"
-          label="Email"
-          type="email"
-          variant="outlined"
-          margin="dense"
-          fullWidth
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        <TextField
-          id="cpf"
-          label="CPF"
-          variant="outlined"
-          margin="dense"
-          fullWidth
-          value={cpf}
-          onChange={(event) => setCpf(event.target.value)}
-        />
-        <TextField
-          id="cep"
-          label="CEP"
-          variant="outlined"
-          margin="dense"
-          fullWidth
-          value={cep}
-          onChange={(event) => setCep(event.target.value)}
-        />
-
-        <Button
-          type="button"
-          className="btn-form"
-          variant="contained"
-          color="primary"
-          onClick={handleCadastrar}
-        >
-          Cadastrar
-        </Button>
+    <div>
+      <h2>Login Page</h2>
+      <form onSubmit={handleLogin}>
+        <label>
+          Email:
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input
+            type="password"
+            value={loginPassword} // Use loginPassword here
+            onChange={(e) => setLoginPassword(e.target.value)} // Update loginPassword here
+            required
+          />
+        </label>
+        <br />
+        <input type="submit" value="Login" />
       </form>
-      {cadastrado && (
-        <Typography variant="h6" color="secondary" className="mensagem-sucesso">
-          Usuário cadastrado com sucesso!
-        </Typography>
-      )}
-    </Container>
+    </div>
   );
 }
 
+export default Login;

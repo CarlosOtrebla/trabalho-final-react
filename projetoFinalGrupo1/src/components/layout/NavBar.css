@@ -12,9 +12,11 @@
 
 /* Navigation bar styling */
 .nav {
-  background-color: #333;
+
   padding: 0; /* Alterado de 10px para 0 */
   width:100%; /* Garantir que a navbar também ocupe a largura total */
+
+  background-color: #27333f;
 }
 
 .logo img {

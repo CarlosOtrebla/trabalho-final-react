@@ -1,11 +1,14 @@
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react"; // Import useContext from React
 import { Container, TextField, Button, Typography } from "@mui/material";
 import "./styles.css";
 import axios from "axios";
 import ProductList from "../products/ProductList";
+import { Link } from 'react-router-dom';
+import { AuthContext } from "../../context/Context";
 
 export default function Cadastro() {
+  const { setPassword } = useContext(AuthContext);
   const [nome, setNome] = useState("");
   // const [nascimento, setNascimento] = useState('');
   const [telefone, setTelefone] = useState("");
@@ -16,7 +19,7 @@ export default function Cadastro() {
   const [senha, setSenha] = useState("");
   const [confirmasenha, setConfirmaSenha] = useState("");
 
-
+  
   const [isEmailTaken, setIsEmailTaken] = useState(false);
 
   const checkEmail = async () => {
@@ -49,12 +52,14 @@ export default function Cadastro() {
     console.log("Email:", email);
     console.log("CPF:", cpf);
     console.log("CEP:", cep);
+    console.log("Senha:", senha);
 
     const usuario = {
       nome,
       telefone,
       email,
       cpf,
+      
 
 
       };
@@ -80,11 +85,14 @@ export default function Cadastro() {
     setEmail('');
     setCpf('');
     setCep('');
+    setSenha('');
 
 
   };
 
   return (
+    
+    
     <Container maxWidth="sm" component="article" className="form">
       <h1>Crie Seu Cadastro</h1>
 
@@ -154,12 +162,24 @@ export default function Cadastro() {
           value={cep}
           onChange={(event) => setCep(event.target.value)}
         />
+        
+         <TextField
+          id="senha"
+          label="Senha"
+          variant="outlined"
+          margin="dense"
+          fullWidth
+          
+          onChange={(event) => setPassword(event.target.value)}
+        />
 
         <Button
           type="button"
           className="btn-form"
           variant="contained"
           color="primary"
+          component={Link}
+          to="/"
           onClick={handleCadastrar}
         >
           Cadastrar
@@ -171,5 +191,6 @@ export default function Cadastro() {
         </Typography>
       )}
     </Container>
+ 
   )
 }

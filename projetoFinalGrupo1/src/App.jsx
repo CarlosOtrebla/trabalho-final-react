@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AuthContext } from "./context/Context";
 
 // import './App.css'
 
@@ -12,8 +13,9 @@ function App() {
   return (
     <>
      <div>
+     
       <Rotas/>
-    
+      
      
      </div>
     </>

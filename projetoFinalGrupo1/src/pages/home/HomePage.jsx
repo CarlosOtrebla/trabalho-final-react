@@ -38,9 +38,6 @@ export function HomePage() {
 
   return (
     <div className="pagina-inicial">
-      <div className="barra-navegacao-horizontal">
-        <NavBar />
-      </div>
 
       <div className="imagem-secao">
         <Slideshow images={images} currentImageIndex={currentImageIndex} />

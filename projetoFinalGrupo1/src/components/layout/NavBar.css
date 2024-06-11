@@ -1,8 +1,10 @@
 /* General container styling */
+
 .container {
-  max-width: 1200px;
+  width: 90vw;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,8 +12,11 @@
 
 /* Navigation bar styling */
 .nav {
+
+  padding: 0; /* Alterado de 10px para 0 */
+  width:100%; /* Garantir que a navbar também ocupe a largura total */
+
   background-color: #27333f;
-  padding: 10px;
 }
 
 .logo img {

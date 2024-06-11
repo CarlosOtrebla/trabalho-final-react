@@ -1,19 +1,36 @@
 export css
-.contato-container {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; /
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+  min-width: 100vw;
+  justify-content: space-between; 
+}
+.contato-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin: 0;
+    text-align: center;
+}
 .contato-container h1 {
-    margin-bottom: 20px;
+    margin: 0;
+    padding: auto;
+    font-size: 30px;
 }
 
 .contato-container ul {
+    margin: 0;
     list-style: none;
     padding: 0;
 }
@@ -22,17 +39,17 @@ export css
     display: flex; 
     flex-direction: column;
     align-items: center;
-    margin-bottom: 30px; 
+    margin-bottom: 20px; 
 }
 
 .contato-container li p {
-    margin: 0; 
+    font-size: 12px; 
+    font-weight: 800;
 }
 
 .social-icons {
     display: flex;
-    justify-content: center; 
-    width: 100%; 
+    justify-content: center;
     margin-top: 10px; 
 }
 

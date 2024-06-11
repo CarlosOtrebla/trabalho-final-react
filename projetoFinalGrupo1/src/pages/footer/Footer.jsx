@@ -20,7 +20,6 @@ const Footer = () => {
 
             <div className="footer-content">
                 <div className="navigation-links">
-                    <a href="/sobre">Sobre Nós</a>
                     <a href="/contato">Contato</a>
                     {/* Adicione mais links conforme necessário */}
                 </div>

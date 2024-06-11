@@ -1,10 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/Context';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState(''); // Use a separate state for the login password
   const { password } = useContext(AuthContext);
+  const [userDetails, setUserDetails] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     console.log(password);
   }, [password]);
@@ -21,6 +27,9 @@ function Login() {
   
     if (user && loginPassword === loginPassword) { // Check if the entered password matches the stored password
       console.log('Login successful');
+      setIsLoggedIn(true); // Update login state
+  setUserDetails(user); // Save user details
+  navigate('/'); 
       // Handle successful login here
     } else {
       console.log('Invalid email or password');

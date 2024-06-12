@@ -97,10 +97,6 @@ export default function Cadastro() {
   };
 
   return (
-<<<<<<< HEAD
-    
-=======
->>>>>>> 95c0e039963c6aee2ce86abd3975a4cda9313a99
     <Container maxWidth="sm" component="article" className="form">
       <h1>Crie Seu Cadastro</h1>
 
@@ -118,10 +114,7 @@ export default function Cadastro() {
           value={nome}
           onChange={(event) => setNome(event.target.value)}
         />
-<<<<<<< HEAD
-=======
         {/* <ProductList/> */}
->>>>>>> 95c0e039963c6aee2ce86abd3975a4cda9313a99
         {/* <TextField
           id="nascimento"
           label="Nascimento"

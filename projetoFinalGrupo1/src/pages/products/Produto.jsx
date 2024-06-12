@@ -1,18 +1,14 @@
-import { NavBar } from "../../components/layout/NavBar"
-import ProductCard from "./ProductCard"
-import ProductList from "./ProductList"
-import "./produto.css";
+import { NavBar } from "../../components/layout/NavBar";
+import ProductCard from "./ProductCard";
+import "./Produto.css";
 
-export function Produto(){
-return(
-
+export function Produto() {
+  return (
     <>
-    <NavBar/>
-    <h1>Produtos</h1>
-    <ProductCard/>
-    <footer/>
-    
+      <NavBar />
+      <h1>Produtos</h1>
+      <ProductCard />
+      <footer />
     </>
-)
-
+  );
 }

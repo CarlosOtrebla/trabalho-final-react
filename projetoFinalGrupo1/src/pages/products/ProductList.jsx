@@ -3,15 +3,15 @@ import axios from "axios";
 import ProductCard from "./ProductCard";
 
 const ProductList = () => {
-  const [produtos, setProdutos] = useState([]);
+  const [produto, setProduto] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchProdutos = async () => {
+    const fetchProduto = async () => {
       try {
         const response = await axios.get("http://localhost:8080/produtos");
-        setProdutos(response.data);
+        setProduto(response.data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -19,8 +19,12 @@ const ProductList = () => {
       }
     };
 
-    fetchProdutos();
+    fetchProduto();
   }, []);
+
+  const handleAddToCart = (produto) => {
+    console.log(`Produto ${produto.nome} adicionado ao carrinho!`);
+  };
 
   if (loading) {
     return <p>Carregando...</p>;
@@ -32,8 +36,12 @@ const ProductList = () => {
 
   return (
     <div style={styles.container}>
-      {produtos.map((produto) => (
-        <ProductCard key={produto.id} produto={produto} />
+      {produto.map((produto) => (
+        <ProductCard
+          key={produto.id}
+          produto={produto}
+          addToCart={() => handleAddToCart(produto)}
+        />
       ))}
     </div>
   );

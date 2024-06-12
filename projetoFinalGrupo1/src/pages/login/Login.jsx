@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-import React, { useContext, useState, useEffect } from 'react';
-import { AuthContext } from '../../context/Context';
-import './login.css';
-=======
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/Context";
 import { Navigate, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { Container } from "@mui/material";
->>>>>>> 95c0e039963c6aee2ce86abd3975a4cda9313a99
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -49,34 +43,6 @@ function Login() {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="login-container">
-      <h2>Login Page</h2>
-      <form onSubmit={handleLogin}>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            value={loginPassword} // Use loginPassword here
-            onChange={(e) => setLoginPassword(e.target.value)} // Update loginPassword here
-            required
-          />
-        </label>
-        <br />
-        <input type="submit" value="Login" />
-      </form>
-    </div>
-=======
     <>
       <Container>
         <div>
@@ -107,7 +73,6 @@ function Login() {
         </div>
       </Container>
     </>
->>>>>>> 95c0e039963c6aee2ce86abd3975a4cda9313a99
   );
 }
 

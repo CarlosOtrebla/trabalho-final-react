@@ -1,81 +1,123 @@
-import React, { useState, useEffect } from "react";
-import "./carrinho.css";
-import axios from 'axios';
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import ProductCard from "../products/ProductCard"; // Verifique o caminho correto
+import { Produto } from "../products/Produto";
 
 export function Carrinho() {
+  const [produtos, setProdutos] = useState([]);
   const [items, setItems] = useState([]);
   const [quantidades, setQuantidades] = useState({});
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    const api = axios.create({
-      baseURL: 'http://localhost:8080',
-    });
+    const fetchProdutos = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/produtos");
+        setProdutos(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
+      }
+    };
 
-    api.get('/carrinho')
-    .then(response => {
-      console.log('Itens do carrinho:', response.data); // Imprime os itens do carrinho
-      const itensApi = response.data;
-      setItems(itensApi);
-      const quantidadesIniciais = itensApi.reduce((acc, item) => {
-        acc[item.id] = 1; 
-        return acc;
-      }, {});
-      setQuantidades(quantidadesIniciais);
-    })
-    .catch(error => {
-      console.error("Erro ao buscar itens do carrinho:", error);
-    });
+    fetchProdutos();
+  }, []);
 
-  api.get('/carrinho/valor-total')
-    .then(response => {
-      console.log('Valor total do carrinho:', response.data); // Imprime o valor total do carrinho
-      setTotal(response.data);
-    })
-    .catch(error => {
-      console.error("Erro ao calcular o valor total do carrinho:", error);
+  const addToCart = (produto) => {
+    setItems((prevItems) => {
+      const existingItem = prevItems.find((item) => item.id === produto.id);
+      if (existingItem) {
+        setQuantidades((prevQuantidades) => ({
+          ...prevQuantidades,
+          [produto.id]: prevQuantidades[produto.id] + 1,
+        }));
+      } else {
+        setQuantidades((prevQuantidades) => ({
+          ...prevQuantidades,
+          [produto.id]: 1,
+        }));
+      }
+      return existingItem ? prevItems : [...prevItems, produto];
     });
-}, []);
+    setTotal((prevTotal) => prevTotal + produto.precoUnitario);
+  };
 
   const aumentarQuantidade = (id) => {
-    const novasQuantidades = { ...quantidades };
-    novasQuantidades[id] = novasQuantidades[id] + 1;
-    setQuantidades(novasQuantidades);
+    setQuantidades((prevQuantidades) => ({
+      ...prevQuantidades,
+      [id]: prevQuantidades[id] + 1,
+    }));
+    const produto = items.find((item) => item.id === id);
+    setTotal((prevTotal) => prevTotal + produto.precoUnitario);
   };
 
   const diminuirQuantidade = (id) => {
-    const novasQuantidades = { ...quantidades };
-    if (novasQuantidades[id] > 1) {
-      novasQuantidades[id] = novasQuantidades[id] - 1;
-      setQuantidades(novasQuantidades);
-    }
+    setQuantidades((prevQuantidades) => {
+      if (prevQuantidades[id] > 1) {
+        return { ...prevQuantidades, [id]: prevQuantidades[id] - 1 };
+      } else {
+        const { [id]: _, ...rest } = prevQuantidades;
+        return rest;
+      }
+    });
+    const produto = items.find((item) => item.id === id);
+    setTotal((prevTotal) => prevTotal - produto.precoUnitario);
   };
 
   const removerItem = (id) => {
-    const novasQuantidades = { ...quantidades };
-    delete novasQuantidades[id];
-    setQuantidades(novasQuantidades);
+    const produto = items.find((item) => item.id === id);
+    setQuantidades((prevQuantidades) => {
+      const { [id]: _, ...rest } = prevQuantidades;
+      return rest;
+    });
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    setTotal(
+      (prevTotal) => prevTotal - produto.precoUnitario * quantidades[id]
+    );
   };
 
   const removerTodosItens = () => {
     setQuantidades({});
+    setItems([]);
+    setTotal(0);
   };
 
   return (
     <div className="carrinho-container">
-      <div className="carrinho">
-        <h2>Carrinho de Compras</h2>
+      <h1>Carrinho de Compras</h1>
+      <div className="produtos-container">
+        <p>
+          <strong>Produtos escolhidos</strong>
+        </p>
+        <div className="carrinho">
+          {items.map((produto) => (
+            <ProductCard
+              key={produto.id}
+              imagem={produto.imagem}
+              nome={produto.nome}
+              tipo1={produto.tipoPrimario}
+              tipo2={produto.tipoSecundario}
+              quantidadeInicial={quantidades[produto.id] || 0}
+              valor={produto.precoUnitario}
+              produto={produto}
+              click={() => removerItem(produto.id)}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="resumo-carrinho">
+        <h2>Resumo do Carrinho</h2>
         <ul>
           {items.map((item) => (
             <li key={item.id}>
-              <span>{item.name}</span>
+              <span>{item.nome}</span>
               <div>
                 <button onClick={() => diminuirQuantidade(item.id)}>-</button>
                 <span>{quantidades[item.id]}</span>
                 <button onClick={() => aumentarQuantidade(item.id)}>+</button>
               </div>
-              <span>R$ {item.price.toFixed(2)}</span>
+              <span>
+                R$ {(item.precoUnitario * quantidades[item.id]).toFixed(2)}
+              </span>
               <button onClick={() => removerItem(item.id)}>Excluir</button>
             </li>
           ))}
